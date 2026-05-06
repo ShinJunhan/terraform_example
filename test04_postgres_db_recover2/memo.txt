@@ -1,0 +1,15 @@
+# ~/terraform_example/test04_postgres_db_recover2/memo.txt
+
+# 생성된 s3 버킷 이름
+s3_bucket_name = "db-backup-storage-46273088"
+
+# 현재 경로에 있는 full_db_backup.sql 파일을 s3 버킷에 업로드 하기
+aws s3 cp ./full_db_backup.sql s3://db-backup-storage-46273088/full_db_backup.sql
+
+# 목록 확인하기
+aws s3 ls s3://db-backup-storage-46273088/
+
+# 모두 삭제 
+aws s3 rm s3://db-backup-storage-46273088/ --recursive
+
+s3 작업을 destory 할 때는 s3 안에 있는 모든 파일들을 다 삭제해야 destroy 할 수 있다

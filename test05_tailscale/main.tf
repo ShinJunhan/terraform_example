@@ -12,13 +12,13 @@ terraform {
   # terraform 상태 관리를 위한 remote 백엔드 설정 (s3)
   backend "s3" {
     # 미리 생성한 s3 버킷 이름
-    bucket = "tfstate-bucket-9c43881f"
+    bucket = "tfstate-bucket-b56e3612"
     # 버킷 내부 경로 및 파일명 (/lecture/하위에 만들어 지도록)
     key = "lecture/terraform.tfstate"
     region = "ap-northeast-2"
-    # (아직 사용 안함 >>) dynamodb_table = "dynamo db 테이블명"
+    dynamodb_table = "terraform-lock" # 미리 준비된 dynamodb 테이블의 이름을 명시하면 lock 상태가 자동으로 관리
     # tfstate 에는 민감한 정보가 있을 수 있으므로 암호화
-    encrypt = true 
+    encrypt = true
   }
 }
 
